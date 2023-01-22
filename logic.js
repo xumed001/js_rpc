@@ -1,50 +1,90 @@
-// Rock papper scissor game
+//
+// ~~~~~~~~~~~~~~~~~~~ Rock papper scissor game ~~~~~~~~~~~~~~~~~
 // 
 
-// get the computers choice
-let CpuChoice = () => {
-    // store 3 choices in an array
-    let choices = ["rock", "papper", "scissor"]
-    // return a random choice from the array using Math.random
-    return choices[Math.floor(Math.random() * 3)];
-}
+// Global vars
+// store 3 choices in an array
+const choices = ["Rock", "Papper", "Scissor"];
+// keeping track of wins
+const winners = [];
 
-//
-//console.log(CpuChoice())
+// get the computers choice
+let cpuChoice = () => {
+    // return cpu random choice from the array using Math.random
+    return choices[Math.floor(Math.random() * choices.length)];
+}
 
 // get the players input
 let playerInput = () => {
     // promt input save it in var
     let input = prompt("Enter: ")
     // conver to lowercase
-    return input.toLowerCase();
+    return input;
 }
 
-//
-//console.log(playerInput())
-
-// function that plays the game, takes 2 input
-function playGame () {
-    let a = CpuChoice();
-    let b = playerInput();
-
-    if (a === b) {
-        console.log(`It's a Draw! CPU also picked ${a}`);
-    } else if (a === "rock" && b === "scissor") {
-        console.log(`You lose! ${a} beats ${b}`);
-    } else if (a === "rock" && b === "papper") {
-        console.log(`You win! ${a} loses to ${b}`);
-    } else if (a === "papper" && b == "scissor") {
-        console.log(`You Win! ${a} loses to ${b}`);
-    } else if (a === "papper" && b == "rock") {
-        console.log(`You lose! ${a} beats ${b}`);
-    } else if (a === "scissor" && b == "papper") {
-        console.log(`You lose! ${a} beats ${b}`);
-    } else if (a === "scissor" && b == "rock") {
-        console.log(`You Win! ${a} loses to ${b}`);
+// function that plays a round of RPS
+// main game logic
+function playRound () {
+    // storing inputs into vars
+    let cpu = cpuChoice().toLowerCase();
+    let player = playerInput().toLowerCase();
+    // for de-bugging
+    console.log(`Player throws: ` +player);
+    console.log(`CPU throws: ` +cpu);
+    // draw returns tie
+    if (cpu === player) {
+        return 'Tie'
+    // player win senario, returns Player value
+    } else if (
+    (player === "rock" && cpu === "scissor") || 
+    (player === "papper" && cpu === "rock") || 
+    (player === "scissor" && cpu === "papper"))
+    {
+        return 'Player'
+    // !win = loss, returns CPU value
     } else {
-        console.log(`Invalid input! only accepts: rock, papper, scissor`)
+        return 'CPU'
     }
 }
 
-playGame();
+//functions that loops the game 3 times and picks the winner
+function runGame () {
+    // run the game 5 times
+    for (let i = 0; i < 5; i++) {
+        // play and save game results 
+        winners.push(playRound());
+        // logging results on console, counting the rounds
+        logScore(i);
+    }
+    
+    
+}
+
+// keeping track of win-loss logic 
+function logScore(round) {
+    //console.log(winners);
+
+    // counting wins-losses-ties storing it into winners array and counting them
+    let playerWins = winners.filter((item) => item == 'Player').length;
+    let cpuWins = winners.filter((item) => item == 'CPU').length;
+    let ties = winners.filter((item) => item == 'Tie').length;
+
+    // console logging game
+    console.log("Round: ", round + 1)
+    console.log("Results: ");
+    console.log("> Player Wins: ", playerWins);
+    console.log("> CPU Wins: ", cpuWins);
+    console.log("> Ties: ", ties);
+    console.log("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
+
+    // 
+    if (round == 4 && playerWins > cpuWins) {
+        console.log(`You Won! 🥳`)
+    } else if (round == 4 && cpuWins > playerWins) {
+        console.log(`You lose 😥`)
+    } else if ( round == 4 && playerWins == cpuWins){
+        console.log(`Looks like its a draw 🤖`)
+    }
+}
+
+runGame();
