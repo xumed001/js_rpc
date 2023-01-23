@@ -5,14 +5,24 @@ body {
 
 .container {
     /* border: 1px solid red; */
-    width: 75%;
+    width: 70%;
     max-width: 1000px;
     margin: 0 auto;
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 
     text-align: center;
-    padding-top: 200px;
+    padding-top: 175px;
     color: aliceblue;
+}
+
+.main {
+    font-size: 1.75em;
+    font-style: italic;
+}
+
+h1 {
+    font-weight: 100;
+    font-style: italic;
 }
 
 button {
