@@ -87,4 +87,4 @@ function logScore(round) {
     }
 }
 
-runGame();
+// runGame();

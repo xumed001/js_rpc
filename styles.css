@@ -1,4 +1,22 @@
+body {
+    background-color: black;
+}
 
-h1 {
-    margin: 0, auto;
+
+.container {
+    /* border: 1px solid red; */
+    width: 75%;
+    max-width: 1000px;
+    margin: 0 auto;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+
+    text-align: center;
+    padding-top: 200px;
+    color: aliceblue;
+}
+
+button {
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+
+    
 }
