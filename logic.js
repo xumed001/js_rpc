@@ -25,7 +25,7 @@ let playerInput = () => {
 // function that plays a round of RPS
 // main game logic
 function playRound () {
-    // storing inputs into vars
+    // storing inputs into vars and making it lower case
     let cpu = cpuChoice().toLowerCase();
     let player = playerInput().toLowerCase();
     // for de-bugging
