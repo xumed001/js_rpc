@@ -35,7 +35,7 @@ h1 {
 }
 
 button {
-    border-radius: 2px;
+    border-radius: .5rem;
     padding: .5rem;
     border: none;
     margin: 0 auto;
@@ -51,5 +51,39 @@ button {
 
 button:hover {
     color: #1F2833;
-    background-color: #66FCF1;
+    background-color: #45A29E;
+}
+
+.input {
+    /* border: 1px solid red; */
+    display: flex;
+    justify-content: center;
+    padding-bottom: 2rem;
+    
+}
+
+.choice1 {
+    /* border: 1px solid red; */
+    border-radius: 2rem;
+}
+.choice2 {
+    /* border: 1px solid red; */
+    border-radius: 2rem;
+}
+.choice3 {
+    /* border: 1px solid red; */
+    border-radius: 2rem;
+}
+
+.status{
+    /* border: 1px solid red; */
+    background-color: #0b0c10;
+    color: #C5C6C7;
+    padding: 2rem;
+    text-align: center;
+}
+
+article > p {
+    display: inline-block;
+    
 }
