@@ -16,6 +16,7 @@ let cpuChoice = () => {
 
 // get the players input
 let playerInput = () => {
+    
     // promt input save it in var
     let input = prompt("Enter: ")
     // conver to lowercase
@@ -88,3 +89,23 @@ function logScore(round) {
 }
 
 // runGame();
+
+let input = document.querySelector('.input')
+input.addEventListener('click', () => {
+    console.log(input.innerText) 
+})
+
+
+let input2 = document.querySelector('.choice2')
+input2.addEventListener('click', () => {
+    console.log('papper')
+})
+
+let input3 = document.querySelector('.choice3')
+input3.addEventListener('click', () => {
+    console.log('scissor')
+})
+
+function returnInput () {
+
+}
