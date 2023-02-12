@@ -4,9 +4,20 @@
 
 // Global vars
 // store 3 choices in an array
-const choices = ["Rock", "Papper", "Scissor"];
+const choices = ["rock", "papper", "scissor"];
 // keeping track of wins
 const winners = [];
+
+let buttonInput = document.querySelectorAll('button')
+buttonInput.forEach((element) => {
+    element.addEventListener('click', () => {
+        if(element.id) {
+            playRound(element.id)
+            console.log(playRound())
+        }
+    })
+
+})
 
 // get the computers choice
 let cpuChoice = () => {
@@ -15,20 +26,20 @@ let cpuChoice = () => {
 }
 
 // get the players input
-let playerInput = () => {
+// let playerInput = () => {
     
-    // promt input save it in var
-    let input = prompt("Enter: ")
-    // conver to lowercase
-    return input;
-}
+//     // promt input save it in var
+//     let input = prompt("Enter: ")
+//     // conver to lowercase
+//     return input;
+// }
 
 // function that plays a round of RPS
 // main game logic
-function playRound () {
+function playRound (x) {
     // storing inputs into vars and making it lower case
-    let cpu = cpuChoice().toLowerCase();
-    let player = playerInput().toLowerCase();
+    let cpu = cpuChoice()
+    let player = x
     // for de-bugging
     console.log(`Player throws: ` +player);
     console.log(`CPU throws: ` +cpu);
@@ -51,61 +62,44 @@ function playRound () {
 //functions that loops the game 3 times and picks the winner
 function runGame () {
     // run the game 5 times
-    for (let i = 0; i < 5; i++) {
-        // play and save game results 
+    let totalRounds = 0
+
+    while (totalRounds < 5) {
         winners.push(playRound());
-        // logging results on console, counting the rounds
-        logScore(i);
+
+        totalRounds++
     }
-    
-    
+
 }
 
 // keeping track of win-loss logic 
-function logScore(round) {
-    //console.log(winners);
+// function logScore(round) {
+//     //console.log(winners);
 
-    // counting wins-losses-ties storing it into winners array and counting them
-    let playerWins = winners.filter((item) => item == 'Player').length;
-    let cpuWins = winners.filter((item) => item == 'CPU').length;
-    let ties = winners.filter((item) => item == 'Tie').length;
+//     // counting wins-losses-ties storing it into winners array and counting them
+//     let playerWins = winners.filter((item) => item == 'Player').length;
+//     let cpuWins = winners.filter((item) => item == 'CPU').length;
+//     let ties = winners.filter((item) => item == 'Tie').length;
 
-    // console logging game
-    console.log("Round: ", round + 1)
-    console.log("Results: ");
-    console.log("> Player Wins: ", playerWins);
-    console.log("> CPU Wins: ", cpuWins);
-    console.log("> Ties: ", ties);
-    console.log("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
+//     // console logging game
+//     console.log("Round: ", round + 1)
+//     console.log("Results: ");
+//     console.log("> Player Wins: ", playerWins);
+//     console.log("> CPU Wins: ", cpuWins);
+//     console.log("> Ties: ", ties);
+//     console.log("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
 
-    // 
-    if (round == 4 && playerWins > cpuWins) {
-        console.log(`You Won! 🥳`)
-    } else if (round == 4 && cpuWins > playerWins) {
-        console.log(`You lose 😥`)
-    } else if ( round == 4 && playerWins == cpuWins){
-        console.log(`Looks like its a draw 🤖`)
-    }
-}
+//     // 
+//     if (round == 4 && playerWins > cpuWins) {
+//         console.log(`You Won! 🥳`)
+//     } else if (round == 4 && cpuWins > playerWins) {
+//         console.log(`You lose 😥`)
+//     } else if ( round == 4 && playerWins == cpuWins){
+//         console.log(`Looks like its a draw 🤖`)
+//     }
+// }
 
-// runGame();
-
-let input = document.querySelector('.input')
-input.addEventListener('click', () => {
-    console.log(input.innerText) 
-})
+runGame();
 
 
-let input2 = document.querySelector('.choice2')
-input2.addEventListener('click', () => {
-    console.log('papper')
-})
 
-let input3 = document.querySelector('.choice3')
-input3.addEventListener('click', () => {
-    console.log('scissor')
-})
-
-function returnInput () {
-
-}
