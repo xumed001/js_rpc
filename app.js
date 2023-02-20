@@ -3,11 +3,11 @@ const choices = ["rock", "papper", "scissor"];
 // keeping track of wins
 const winners = [];
 
-let buttonInput = document.querySelectorAll('button')
+let buttonInput = document.querySelectorAll('.input > *')
 
-function resetGame () {
-    // play again
-}
+// function resetGame () {
+//     // play again
+// }
 
 
 // get the computers choice
@@ -17,26 +17,25 @@ let cpuChoice = () => {
 }
 
 
+
+
 function runGame () {
-    // listening to buttons input
     buttonInput.forEach((element) => {
         element.addEventListener('click', () => {
-            if(element.id) {
-                playRound(element.id) 
-            }
+           let userInput = (element.id)
+        // plays the round with users input
+           winners.push(playRound(userInput))
+            console.log(winners)
         })
     })
-
-    winners.push(playRound());
-    console.log(winners)
 }
 
-function countRounds () {
-    let wins = checkWins()
-    if (wins >= 5) {
-        return
-    }
-}
+// function countRounds () {
+//     let wins = checkWins()
+//     if (wins >= 5) {
+//         return
+//     }
+// }
 
 
 function playRound (x) {
@@ -65,14 +64,15 @@ function playRound (x) {
     // !win = loss, returns CPU value
     } else {
         return 'CPU'
-    }   
+    }
+    
 }
 
-function checkWins () {
-    let playerWins = winners.filter((item) => item == 'Player').length
-    let cpuWins = winners.filter((item) => item == 'CPU').length
-    return Math.max(playerWins, cpuWins)
-}
+// function checkWins () {
+//     let playerWins = winners.filter((item) => item == 'Player').length
+//     let cpuWins = winners.filter((item) => item == 'CPU').length
+//     return Math.max(playerWins, cpuWins)
+// }
 
 // let playerWins = winners.filter((item) => item == 'Player').length
 // let cpuWins = winners.filter((item) => item == 'CPU').length
@@ -97,3 +97,4 @@ function checkWins () {
 
 
 
+runGame()

@@ -2,18 +2,19 @@
 // ~~~~~~~~~~~~~~~~~~~ Rock papper scissor game ~~~~~~~~~~~~~~~~~
 // 
 
-// Global vars
-// store 3 choices in an array
+// CPU choices
 const choices = ["rock", "papper", "scissor"];
 // keeping track of wins
 const winners = [];
 
-let buttonInput = document.querySelectorAll('button')
+// USER input
+let buttonInput = document.querySelectorAll('.input > *')
+console.log(buttonInput)
 buttonInput.forEach((element) => {
     element.addEventListener('click', () => {
         if(element.id) {
-            playRound(element.id)
-            console.log(playRound())
+            console.log(playRound(element.id))
+            //console.log(playRound())
         }
     })
 
