@@ -1,7 +1,8 @@
 // CPU choices
 const choices = ["rock", "papper", "scissor"];
 // keeping track of wins
-const winners = [];
+const winners = []
+let round = 0
 
 let buttonInput = document.querySelectorAll('.input > *')
 
@@ -22,20 +23,17 @@ let cpuChoice = () => {
 function runGame () {
     buttonInput.forEach((element) => {
         element.addEventListener('click', () => {
-           let userInput = (element.id)
-        // plays the round with users input
-           winners.push(playRound(userInput))
+            let userInput = (element.id)
+            // plays the round with users input
+            winners.push(playRound(userInput))
             console.log(winners)
+            round++
+            console.log(round)
+            checkWins(round)
         })
     })
 }
 
-// function countRounds () {
-//     let wins = checkWins()
-//     if (wins >= 5) {
-//         return
-//     }
-// }
 
 
 function playRound (x) {
@@ -64,19 +62,24 @@ function playRound (x) {
     // !win = loss, returns CPU value
     } else {
         return 'CPU'
-    }
-    
+    }    
 }
 
-// function checkWins () {
-//     let playerWins = winners.filter((item) => item == 'Player').length
-//     let cpuWins = winners.filter((item) => item == 'CPU').length
-//     return Math.max(playerWins, cpuWins)
-// }
+function checkWins (round) {
+    let playerWins = winners.filter((item) => item == 'Player').length
+    let cpuWins = winners.filter((item) => item == 'CPU').length
+    let ties = winners.filter((item) => item == 'Tie').length
 
-// let playerWins = winners.filter((item) => item == 'Player').length
-// let cpuWins = winners.filter((item) => item == 'CPU').length
-// let ties = winners.filter((item) => item == 'Tie').length
+    // 
+    if (round == 5 && playerWins > cpuWins) {
+        console.log(`You Won! 🥳`)
+    } else if (round == 5 && cpuWins > playerWins) {
+        console.log(`You lose 😥`)
+    } else if ( round == 5 && playerWins == cpuWins){
+        console.log(`Looks like its a draw 🤖`)
+    }
+
+}
 
 // console logging game
 // console.log("Round: ", round + 1)
@@ -86,14 +89,7 @@ function playRound (x) {
 // console.log("> Ties: ", ties);
 // console.log("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
 
-// // 
-// if (round == 4 && playerWins > cpuWins) {
-//     console.log(`You Won! 🥳`)
-// } else if (round == 4 && cpuWins > playerWins) {
-//     console.log(`You lose 😥`)
-// } else if ( round == 4 && playerWins == cpuWins){
-//     console.log(`Looks like its a draw 🤖`)
-// }
+
 
 
 
