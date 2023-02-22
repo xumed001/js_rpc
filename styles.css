@@ -120,3 +120,7 @@ article > p {
     display: inline-block;
     padding: 1rem 2rem;
 }
+
+.results {
+    border: 2px solid red;
+}
