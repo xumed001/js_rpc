@@ -132,7 +132,8 @@ function resetGame() {
     buttonInput.forEach(element => {
         element.disabled = false
     })
- 
+    
+    displayPlayer.textContent = 'Pick a choice to begin !'
 }
 
 
