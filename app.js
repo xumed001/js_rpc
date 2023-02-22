@@ -91,7 +91,7 @@ function checkWins (round) {
         lastResult.textContent = `You Won! 🥳`
         setGameOver()
     } else if (round == 5 && cpuWins > playerWins) {
-        lastResult.textContent = `You lose 😥`
+        lastResult.textContent = `You lost 😥`
         setGameOver()
     } else if ( round == 5 && playerWins == cpuWins){
         lastResult.textContent = `Looks like its a draw 🤖`
