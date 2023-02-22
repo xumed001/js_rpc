@@ -110,17 +110,19 @@ button:hover {
     flex-direction: column;
 }
 
-article > h2 {
+h2 {
     font-size: 2rem;
 }
 
-article > p {
-    /* border: 1px solid red; */
+.results {
     padding-top: 2rem;
-    display: inline-block;
-    padding: 1rem 2rem;
+    /* border: 2px solid red; */
+    color: #66FCF1;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
 }
 
-.results {
-    border: 2px solid red;
+.results p {
+    font-family: fantasy;
 }

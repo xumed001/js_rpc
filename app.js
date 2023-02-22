@@ -1,15 +1,27 @@
+//
+// displays game status; feedback
+const displayPlayer = document.querySelector('.displayPlayer')
+const displayCpu = document.querySelector('.displayCpu')
+const displayWins = document.querySelector('.displayWins')
+const displayLoss = document.querySelector('.displayLoss')
+const displayDraws = document.querySelector('.displayDraws')
+const lastResult = document.querySelector('.lastResult')
+
+// player input 
+let buttonInput = document.querySelectorAll('.input > *')
+
 // CPU choices
 const choices = ["rock", "papper", "scissor"];
 // keeping track of wins
-const winners = []
+let winners = []
+// counting rounds for Best of 5
 let round = 0
 
-let buttonInput = document.querySelectorAll('.input > *')
+let tieCount = 0
+let winCount = 0
+let lossCount = 0
 
-// function resetGame () {
-//     // play again
-// }
-
+let resetButton
 
 // get the computers choice
 let cpuChoice = () => {
@@ -17,9 +29,7 @@ let cpuChoice = () => {
     return choices[Math.floor(Math.random() * choices.length)];
 }
 
-
-
-
+// Main game logic
 function runGame () {
     buttonInput.forEach((element) => {
         element.addEventListener('click', () => {
@@ -34,8 +44,7 @@ function runGame () {
     })
 }
 
-
-
+// singular event within the game
 function playRound (x) {
     // storing inputs into vars and making it lower case
     let cpu = cpuChoice()
@@ -43,7 +52,10 @@ function playRound (x) {
     // for de-bugging
     console.log(`Player throws: ` +player)
     console.log(`CPU throws: ` +cpu)
-
+    
+    displayPlayer.textContent = `You picked: ${player}`
+    displayCpu.textContent = `CPU picked: ${cpu}`
+    
     // dont start without player input
     if (player == undefined) {
         return
@@ -51,18 +63,22 @@ function playRound (x) {
 
     // draw returns tie
     if (cpu === player) {
+        displayDraws.textContent = `Ties: ${tieCount+= 1}`
         return 'Tie'
     // player win senario, returns Player value
     } else if (
     (player === "rock" && cpu === "scissor") || 
     (player === "papper" && cpu === "rock") || 
     (player === "scissor" && cpu === "papper"))
-    {
+    {   
+        displayWins.textContent = `Wins: ${winCount+= 1}`
         return 'Player'
     // !win = loss, returns CPU value
     } else {
+        displayLoss.textContent = `Loss: ${lossCount+= 1}`
         return 'CPU'
     }    
+    
 }
 
 function checkWins (round) {
@@ -72,25 +88,52 @@ function checkWins (round) {
 
     // 
     if (round == 5 && playerWins > cpuWins) {
-        console.log(`You Won! 🥳`)
+        lastResult.textContent = `You Won! 🥳`
+        setGameOver()
     } else if (round == 5 && cpuWins > playerWins) {
-        console.log(`You lose 😥`)
+        lastResult.textContent = `You lose 😥`
+        setGameOver()
     } else if ( round == 5 && playerWins == cpuWins){
-        console.log(`Looks like its a draw 🤖`)
+        lastResult.textContent = `Looks like its a draw 🤖`
+        setGameOver()
     }
 
 }
 
-// console logging game
-// console.log("Round: ", round + 1)
-// console.log("Results: ");
-// console.log("> Player Wins: ", playerWins);
-// console.log("> CPU Wins: ", cpuWins);
-// console.log("> Ties: ", ties);
-// console.log("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
+function setGameOver() {
+    buttonInput.forEach(element => {
+        element.disabled = true
+    })
 
+    resetButton = document.createElement('button')
+    resetButton.textContent = 'Start a new game'
+    document.body.append(resetButton)
+    resetButton.addEventListener('click', resetGame)    
+}
 
+function resetGame() {
+    //
+    round = 0
+    tieCount = 0
+    winCount = 0
+    lossCount = 0
 
+    winners = []
+    
+    // reseting display information 
+    const resetResults = document.querySelectorAll('.results p')
+    for (const resetResult of resetResults) {
+        resetResult.textContent = ''
+    }
+
+    // 
+    resetButton.parentNode.removeChild(resetButton)
+
+    buttonInput.forEach(element => {
+        element.disabled = false
+    })
+ 
+}
 
 
 runGame()
