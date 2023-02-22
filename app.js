@@ -63,7 +63,7 @@ function playRound (x) {
 
     // draw returns tie
     if (cpu === player) {
-        displayDraws.textContent = `Ties: ${tieCount+= 1}`
+        displayDraws.textContent = `T : ${tieCount+= 1}`
         return 'Tie'
     // player win senario, returns Player value
     } else if (
@@ -71,11 +71,11 @@ function playRound (x) {
     (player === "papper" && cpu === "rock") || 
     (player === "scissor" && cpu === "papper"))
     {   
-        displayWins.textContent = `Wins: ${winCount+= 1}`
+        displayWins.textContent = `W : ${winCount+= 1}`
         return 'Player'
     // !win = loss, returns CPU value
     } else {
-        displayLoss.textContent = `Loss: ${lossCount+= 1}`
+        displayLoss.textContent = `L : ${lossCount+= 1}`
         return 'CPU'
     }    
     
